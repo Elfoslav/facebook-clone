@@ -1,0 +1,23 @@
+<head>
+  <title>facebook-clone</title>
+</head>
+
+<body>
+  
+</body>
+
+<template name="layout">
+  <div class="container">
+    <h1>Welcome to Meteor Facebook clone!</h1>
+    {{> loginButtons}}
+    <br><br>
+    <p>
+      <input class="form-control typeahead" name="username" type="text"
+           placeholder="Search for users..."
+           autocomplete="off" spellcheck="off"
+           data-source="usernames"/>
+    </p>
+
+    {{> yield}}
+  </div>
+</template>
