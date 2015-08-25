@@ -6,6 +6,14 @@ Template.userProfile.helpers({
       return Meteor.user().hasRequestFrom(this.user);
     }
   },
+  isRequester: function() {
+    var friendRequest = Request.collection.findOne({
+      requesterId: Meteor.userId(),
+      userId: this.user._id
+    });
+    if (friendRequest)
+      return friendRequest.requesterId == Meteor.userId();
+  },
   friends: function() {
     console.log('friends: ', this.user.friends().fetch());
     return this.user.friends().fetch();
@@ -20,14 +28,20 @@ Template.userProfile.events({
   },
   'click .cancel-friendship': function(e, tpl) {
     var user = tpl.data.user;
-    friendRequest = Request.collection.findOne();
+    var friendRequest = Request.collection.findOne({
+      requesterId: Meteor.userId(),
+      userId: this.user._id
+    });
     if (friendRequest) {
       friendRequest.cancel();
     }
   },
   'click .confirm-friendship': function(e, tpl) {
     var user = tpl.data.user;
-    friendRequest = Request.collection.findOne();
+    friendRequest = Request.collection.findOne({
+      requesterId: Meteor.userId(),
+      userId: this.user._id
+    });
     if (friendRequest) {
       friendRequest.accept();
     }

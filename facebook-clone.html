@@ -17,6 +17,14 @@
            autocomplete="off" spellcheck="off"
            data-source="usernames"/>
     </p>
+    {{#each friendRequests}}
+      <div class="alert alert-info">
+        <a href="{{pathFor 'userProfile' username=requester.username}}">{{requester.username}}</a>
+        has sent you a request for friendship.
+        <button class="btn btn-success confirm-friendship">Confirm friendship</button>
+        <button class="btn btn-danger cancel-friendship">Cancel friendship request</button>
+      </div>
+    {{/each}}
 
     {{> yield}}
   </div>

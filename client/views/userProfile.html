@@ -4,7 +4,11 @@
     <button class="btn btn-success confirm-friendship">Confirm friendship</button>
     <button class="btn btn-danger cancel-friendship">Cancel friendship request</button>
   {{else}}
-    <button class="btn btn-primary add-friend">Add friend</button>
+    {{#if isRequester}}
+      <div class="alert alert-info">Friend request sent</div>
+    {{else}}
+      <button class="btn btn-primary add-friend">Add friend</button>
+    {{/if}}
   {{/if}}
   
   <h2>Friends</h2>
